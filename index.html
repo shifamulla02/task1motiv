@@ -1,0 +1,129 @@
+ <html>
+	<head>
+		<title> motivational app by shifa </title>
+<style>
+    /* Global Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background-color: #f9f9f9; /* Light neutral background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 20px;
+    }
+
+    /* Main container */
+    center {
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        text-align: center;
+        width: 100%;
+        max-width: 600px;
+        border: 1px solid #e0e0e0;
+    }
+
+    /* Header */
+    h1 {
+        color: #2c3e50; /* Dark gray for text */
+        font-size: 2.2rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 15px;
+        background-color: #ecf0f1; /* Light gray background */
+        border-radius: 10px;
+        border: 2px solid #3498db; /* Accent blue */
+    }
+
+    /* Message styling */
+    h2 {
+        color: #34495e; /* Darker gray */
+        font-size: 1.3rem;
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f4f6f7; /* Slightly off-white */
+        border-radius: 10px;
+        border: 1px solid #bdc3c7; /* Soft border */
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    h2:hover {
+        background-color: #ecf0f1; /* Lighten background on hover */
+        transform: scale(1.02); /* Slight scale effect for interactivity */
+    }
+
+    /* Submit button */
+    input[type="submit"] {
+        background-color: #3498db; /* Accent blue */
+        color: white;
+        font-size: 1.1rem;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        margin-top: 30px;
+        width: 60%;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #2980b9; /* Darker blue on hover */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Media Queries for responsiveness */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 1.8rem;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+        }
+
+        input[type="submit"] {
+            width: 80%;
+        }
+    }
+</style>
+
+
+	</head>
+
+	<body>
+		<center>
+			<h1> ~ MOTIVATIONAL APP ~ </h1>
+			<form onsubmit="mess()">
+				<input type="submit" value="get message"/>
+			</form>
+			<h2 id="msg" />
+			<h2 id="aut" />
+			<script>
+				function mess()
+				{
+					event.preventDefault();
+					let msg=document.getElementById("msg");
+					let aut=document.getElementById("aut");
+					let url="https://quotes-api-self.vercel.app/quote";
+
+					fetch(url)
+					.then(res=>res.json())
+					.then(data=>{
+						msg.innerHTML=data.quote;
+						aut.innerHTML=data.author;
+					})
+				}
+			</script>
+		</center>
+	</body>
+</html>
